@@ -26,14 +26,6 @@ public class ResClient {
 
     public static String pass(DataLineVo vo) throws Exception {
 
-      /*  RequestParams params = new RequestParams();
-        params.put("signName", vo.getSignName());
-        params.put("item", vo.getItem());
-        params.put("userId", vo.getUserId());
-        params.put("addCode", vo.getAddCode());
-        params.put("bizType", vo.getBizType());
-        params.put("performTime", vo.getPerformTime());
-        params.put("udid", vo.getUdid());*/
         return post("http://super.lvmama.com/clutter/supplier/passInfo.do", vo);
     }
 
