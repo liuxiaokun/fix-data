@@ -24,6 +24,8 @@ public class FixSyncDataNIO {
 
         for (String line : lines) {
             LOGGER.info(line);
+            LOGGER.error(line);
+            LOGGER.warn(line);
             Thread.sleep(10000);
         }
     }
