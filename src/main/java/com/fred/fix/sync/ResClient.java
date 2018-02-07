@@ -7,6 +7,8 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,25 @@ public class ResClient {
             respContent = EntityUtils.toString(he, "UTF-8");
         }
         return respContent;
+    }
+
+    public static String get(String url) {
+
+        String respContent = null;
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            CloseableHttpClient client = HttpClients.createDefault();
+            CloseableHttpResponse resp = client.execute(httpGet);
+
+            if (resp.getStatusLine().getStatusCode() == 200) {
+                HttpEntity he = resp.getEntity();
+                respContent = EntityUtils.toString(he, "UTF-8");
+            }
+        } catch (Exception e) {
+
+        }
+        return respContent;
+
     }
 
 }
